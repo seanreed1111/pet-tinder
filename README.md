@@ -1,2 +1,3 @@
-yarn install
-yarn start
+### Setup
+- yarn install
+- yarn start
