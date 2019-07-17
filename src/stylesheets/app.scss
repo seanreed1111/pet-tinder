@@ -1,3 +1,31 @@
 .app {
-  background: blue;
+  display: flex;
+  flex-direction: column;
+
+  .panels {
+    height: 90%;
+  }
+
+  .tabs_list {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    .tab {
+      padding: 4px 10px;
+      border-right: solid 1px black;
+      cursor: pointer;
+
+      &:last-child {
+        border-right: none;
+      }
+
+      &.selected {
+        background: rgba(100, 100, 100, .5);
+      }
+    }
+  }
 }
