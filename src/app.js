@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import Search from 'components/search';
@@ -7,35 +7,53 @@ import Settings from 'components/settings';
 
 import 'stylesheets/app.scss';
 
-function App() {
-  return (
-    <div className="app">
-      <Tabs
-        selectedTabClassName="selected"
-        defaultIndex={0}
-      >
-        <div className="panels">
-          <TabPanel>
-            <Search/>
-          </TabPanel>
+// used to get around not requesting from same domain
+const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
+const petCorsUrl = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/pets.json';
+const petUrl = corsAnywhereUrl + petCorsUrl
 
-          <TabPanel>
-            <Saved/>
-          </TabPanel>
+class App extends Component {
+  state = {}
 
-          <TabPanel>
-            <Settings/>
-          </TabPanel>
-        </div>
+  componentDidMount() {
+    fetch(petUrl)
+      .then( (response) => response.json() )
+      .then( (pets) => {
+        this.setState({ pets: pets })
+      })
+      .catch((err) => { console.log(err)})
+  }
 
-        <TabList className="tabs_list">
-          <Tab className={['tab', 'search']} >Search</Tab>
-          <Tab className={['tab', 'saved']} >Saved</Tab>
-          <Tab className={['tab', 'settings']} >Settings</Tab>
-        </TabList>
-      </Tabs>
-    </div>
-  );
+  render() {
+    return (
+      <div className="app">
+        <Tabs
+          selectedTabClassName="selected"
+          defaultIndex={0}
+        >
+          <div className="panels">
+            <TabPanel>
+              <Search pets={(this.state.pets || [])}/>
+            </TabPanel>
+
+            <TabPanel>
+              <Saved/>
+            </TabPanel>
+
+            <TabPanel>
+              <Settings/>
+            </TabPanel>
+          </div>
+
+          <TabList className="tabs_list">
+            <Tab className={['tab', 'search']} >Search</Tab>
+            <Tab className={['tab', 'saved']} >Saved</Tab>
+            <Tab className={['tab', 'settings']} >Settings</Tab>
+          </TabList>
+        </Tabs>
+      </div>
+    );
+  }
 }
 
 export default App;
