@@ -1,0 +1,33 @@
+.search.pane {
+  .slider {
+    max-height: 490px;
+  }
+
+  .slide {
+    background: white;
+  }
+
+  .pet {
+    figure {
+      margin: 0;
+      max-height: calc(.60 * 490px);
+      flex-basis: calc(.60 * 490px);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      border: solid 1px gray;
+    }
+
+    .name {
+      text-align: left;
+      margin-left: 10px;
+    }
+
+    .description {
+      overflow-y: scroll;
+      max-height: 23vh;
+      border: solid 1px gray;
+      padding: 10px;
+    }
+  }
+}

@@ -8,6 +8,7 @@ import Settings from 'components/settings';
 import 'stylesheets/app.scss';
 
 // used to get around not requesting from same domain
+// FIXME: (allow this domain from server)
 const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
 const petCorsUrl = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/pets.json';
 const petUrl = corsAnywhereUrl + petCorsUrl
@@ -33,7 +34,9 @@ class App extends Component {
         >
           <div className="panels">
             <TabPanel>
-              <Search pets={(this.state.pets || [])}/>
+              { this.state.pets &&
+                <Search pets={(this.state.pets || [])}/>
+              }
             </TabPanel>
 
             <TabPanel>
