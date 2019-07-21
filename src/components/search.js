@@ -21,8 +21,8 @@ class Search extends Component {
                 <figure>
                   <img alt={`${pet.type}: ${pet.name}`} src={pet.img} />
                 </figure>
-                <h3 className="name"> {pet.name}, {pet.age}yr, {pet.sex} </h3>
-                <div className="description"> {pet.profile} </div>
+                <h3 className="name">{`${pet.name}, ${pet.age}yr, ${pet.sex}`}</h3>
+                <div className="description">{pet.profile}</div>
               </div>
             )
           })
