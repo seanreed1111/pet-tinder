@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Swipeable from "react-swipy"
 
-import "stylesheets/search.scss";
+import "stylesheets/deck.scss";
 
-class Search extends Component {
+class Deck extends Component {
   constructor(props) {
     super(props);
     this.state = { pets: props.pets }
@@ -16,7 +16,7 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="search pane">
+      <div className="deck pane">
         {
           this.state.pets.map( (pet, i) => {
             return (
@@ -41,4 +41,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default Deck;

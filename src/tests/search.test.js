@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Search from 'components/search';
+import Deck from 'components/deck';
 
 const fakeData = [
   {
@@ -23,22 +23,22 @@ const fakeData = [
   }
 ]
 
-describe("Search", () => {
-  let search;
+describe("Deck", () => {
+  let deck;
 
   beforeEach(() => {
-    search = shallow(<Search pets={fakeData}/>);
+    deck = shallow(<Deck pets={fakeData}/>);
   })
 
   it('renders slides', () => {
-    expect(search.find('.pet').length).toBe(2);
+    expect(deck.find('.pet').length).toBe(2);
   });
 
   describe("slide", () => {
     let slide;
 
     beforeEach(() => {
-      slide = search.find('.pet').first()
+      slide = deck.find('.pet').first()
     })
 
     it("has the right name", () => {

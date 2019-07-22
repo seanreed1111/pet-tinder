@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import Search from 'components/search';
+import Deck from 'components/deck';
 import Saved from 'components/saved';
 import Settings from 'components/settings';
 
@@ -35,7 +35,7 @@ class App extends Component {
           <div className="panels">
             <TabPanel>
               { this.state.pets &&
-                <Search pets={(this.state.pets || [])}/>
+                <Deck pets={(this.state.pets || [])}/>
               }
             </TabPanel>
 
