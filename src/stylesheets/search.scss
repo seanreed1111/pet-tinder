@@ -1,13 +1,17 @@
 .search.pane {
-  .slider {
-    max-height: 490px;
-  }
-
-  .slide {
-    background: white;
-  }
+  position: relative;
+  max-height: 490px;
+  min-height: 490px;
+  overflow: hidden;
 
   .pet {
+    background: white;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 490px;
+
     figure {
       margin: 0;
       max-height: calc(.60 * 490px);
@@ -16,6 +20,10 @@
       display: flex;
       align-items: center;
       border: solid 1px gray;
+
+      img {
+        width: 100%;
+      }
     }
 
     .name {
@@ -25,7 +33,7 @@
 
     .description {
       overflow-y: scroll;
-      max-height: 23vh;
+      max-height: 19vh;
       border: solid 1px gray;
       padding: 10px;
     }
