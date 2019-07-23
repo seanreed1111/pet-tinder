@@ -1,3 +1,5 @@
+@import './variables';
+
 .deck.pane {
   position: relative;
   max-height: 490px;
@@ -6,5 +8,24 @@
 
   .empty h3 {
     text-align: center;
+  }
+
+  .control {
+    position: absolute;
+    top: 50%;
+    z-index: 200;
+    padding: 10px;
+
+    @media all and (max-width: $tablet) {
+      display: none;
+    }
+
+    &.left {
+      left: 0;
+    }
+
+    &.right {
+      right: 0;
+    }
   }
 }

@@ -18,6 +18,19 @@ class Deck extends Component {
   render() {
     return (
       <div className="deck pane">
+        <button
+          className="control left"
+          onClick={this.remove.bind(this, 'left')}
+        >
+          Reject
+        </button>
+
+        <button
+          className="control right"
+          onClick={this.remove.bind(this, 'right')}
+        >
+          Accept
+        </button>
         {
           this.state.pets.map( (pet, i) => {
             return (
