@@ -3,7 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import Deck from 'components/deck';
 import SavedList from 'components/savedList';
-import Settings from 'components/settings';
+import UserProfile from 'components/userProfile';
 
 import 'stylesheets/app.scss';
 
@@ -13,14 +13,34 @@ const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
 const petCorsUrl = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/pets.json';
 const petUrl = corsAnywhereUrl + petCorsUrl
 
+const profileCorsUrl = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/settings.json'
+const profileUrl = corsAnywhereUrl + profileCorsUrl
+
 class App extends Component {
-  state = {}
+  state = {
+    pets: null,
+    userProfile: null
+  }
 
   componentDidMount() {
+    this.fetchPets()
+    this.fetchUserProfile()
+  }
+
+  fetchPets() {
     fetch(petUrl)
       .then( (response) => response.json() )
       .then( (pets) => {
         this.setState({ pets: pets })
+      })
+      .catch((err) => { console.log(err)})
+  }
+
+  fetchUserProfile() {
+    fetch(profileUrl)
+      .then( (response) => response.json() )
+      .then( (profile) => {
+        this.setState({ userProfile: profile })
       })
       .catch((err) => { console.log(err)})
   }
@@ -30,7 +50,7 @@ class App extends Component {
       <div className="app">
         <Tabs
           selectedTabClassName="selected"
-          defaultIndex={1}
+          defaultIndex={2}
         >
           <div className="panels">
             <TabPanel>
@@ -46,7 +66,9 @@ class App extends Component {
             </TabPanel>
 
             <TabPanel>
-              <Settings/>
+              { this.state.userProfile &&
+                <UserProfile userProfile={this.state.userProfile}/>
+              }
             </TabPanel>
           </div>
 
