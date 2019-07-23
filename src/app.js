@@ -83,8 +83,15 @@ class App extends Component {
 
           <TabList className="tabs_list" data-selected={this.state.selectedTab}>
             {
-              tabNames.map((name) => {
-                return <Tab className={['tab', name]} >{name}</Tab>
+              tabNames.map((name, i) => {
+                return (
+                  <Tab
+                    className={['tab', name]}
+                    key={i}
+                  >
+                  {name}
+                  </Tab>
+                )
               })
             }
           </TabList>
