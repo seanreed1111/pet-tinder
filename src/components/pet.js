@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import 'stylesheets/pet.scss'
 
 class Pet extends Component {
   render() {

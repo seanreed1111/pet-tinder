@@ -4,41 +4,6 @@
   min-height: 490px;
   overflow: hidden;
 
-  .pet {
-    background: white;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    min-height: 490px;
-
-    figure {
-      margin: 0;
-      max-height: calc(.60 * 490px);
-      flex-basis: calc(.60 * 490px);
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      border: solid 1px gray;
-
-      img {
-        width: 100%;
-      }
-    }
-
-    .name {
-      text-align: left;
-      margin-left: 10px;
-    }
-
-    .description {
-      overflow-y: scroll;
-      max-height: 19vh;
-      border: solid 1px gray;
-      padding: 10px;
-    }
-  }
-
   .empty h3 {
     text-align: center;
   }

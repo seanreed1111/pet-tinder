@@ -23,7 +23,7 @@ class Deck extends Component {
             return (
               <div
                 style={{zIndex: 100 - i}}
-                className="pet"
+                className="pet full"
                 key={pet.id}
               >
                 <Swipeable onSwipe={this.remove.bind(this)} >
