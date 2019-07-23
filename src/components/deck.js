@@ -36,6 +36,9 @@ class Deck extends Component {
             )
           })
         }
+        <div className="empty">
+          <h3 className="name">No more pets :(</h3>
+        </div>
       </div>
     )
   }
