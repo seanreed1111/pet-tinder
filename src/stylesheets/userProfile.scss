@@ -1,7 +1,9 @@
 .userProfile {
+  padding: 10px;
+
   .description {
     overflow-y: scroll;
-    max-height: 19vh;
+    max-height: 27vh;
     border: solid 1px gray;
     padding: 10px;
   }
@@ -32,10 +34,15 @@
     }
   }
 
+  .react-switch-bg{
+    border-radius: 5px !important;
+    border: solid 1px rgba(204, 204, 204, .6);
+  }
+
   .react-numeric-input {
     input {
       width: 60px;
-      padding: 3px 10px!important;
+      padding: 3px 10px !important;
     }
 
     b {

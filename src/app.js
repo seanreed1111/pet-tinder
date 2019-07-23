@@ -11,15 +11,19 @@ import 'stylesheets/app.scss';
 // FIXME: (allow this domain from server)
 const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
 const petCorsUrl = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/pets.json';
-const petUrl = corsAnywhereUrl + petCorsUrl
+const petUrl = corsAnywhereUrl + petCorsUrl;
 
-const profileCorsUrl = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/settings.json'
-const profileUrl = corsAnywhereUrl + profileCorsUrl
+const profileCorsUrl = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/settings.json';
+const profileUrl = corsAnywhereUrl + profileCorsUrl;
+
+const tabNames = ['search', 'saved', 'settings'];
+const defaultTab = 0;
 
 class App extends Component {
   state = {
     pets: null,
-    userProfile: null
+    userProfile: null,
+    selectedTab: tabNames[defaultTab]
   }
 
   componentDidMount() {
@@ -45,12 +49,17 @@ class App extends Component {
       .catch((err) => { console.log(err)})
   }
 
+  selectTab(i) {
+    this.setState({selectedTab: tabNames[i]})
+  }
+
   render() {
     return (
       <div className="app">
         <Tabs
           selectedTabClassName="selected"
-          defaultIndex={2}
+          onSelect={this.selectTab.bind(this)}
+          defaultIndex={defaultTab}
         >
           <div className="panels">
             <TabPanel>
@@ -72,10 +81,12 @@ class App extends Component {
             </TabPanel>
           </div>
 
-          <TabList className="tabs_list">
-            <Tab className={['tab', 'search']} >Search</Tab>
-            <Tab className={['tab', 'saved']} >Saved</Tab>
-            <Tab className={['tab', 'settings']} >Settings</Tab>
+          <TabList className="tabs_list" data-selected={this.state.selectedTab}>
+            {
+              tabNames.map((name) => {
+                return <Tab className={['tab', name]} >{name}</Tab>
+              })
+            }
           </TabList>
         </Tabs>
       </div>

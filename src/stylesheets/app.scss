@@ -16,10 +16,18 @@
     align-items: center;
     padding: 0;
 
+    &[data-selected="settings"] {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     .tab {
       padding: 4px 10px;
       border-right: solid 1px black;
       cursor: pointer;
+      text-transform: capitalize;
 
       &:last-child {
         border-right: none;

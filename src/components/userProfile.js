@@ -39,8 +39,11 @@ class UserProfile extends Component {
               <div className="right">
                 <span className="on">Cat</span>
                 <Switch
+                  onColor={"#739ace"}
                   onChange={this.changeType.bind(this)}
                   checked={this.state.typePreference === 'cat'}
+                  checkedIcon={false}
+                  uncheckedIcon={false}
                 />
                 <span className="off">Dog</span>
               </div>
