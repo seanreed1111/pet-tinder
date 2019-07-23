@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Deck from 'components/deck';
+import { startTouchEvent, moveTouchEvent } from './swipeHelpers.js';
 
 const fakeData = [
   {
@@ -27,7 +28,7 @@ describe("Deck", () => {
   let deck;
 
   beforeEach(() => {
-    deck = shallow(<Deck pets={fakeData}/>);
+    deck = shallow(<Deck pets={fakeData} />);
   })
 
   it('renders slides', () => {
