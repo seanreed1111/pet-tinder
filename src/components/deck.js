@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Swipeable from "react-swipy"
+import Swipeable from "react-swipy";
+import Pet from 'components/pet';
 
 import "stylesheets/deck.scss";
 
@@ -26,11 +27,7 @@ class Deck extends Component {
                 key={pet.id}
               >
                 <Swipeable onSwipe={this.remove.bind(this)} >
-                    <figure>
-                      <img alt={`${pet.type}: ${pet.name}`} src={pet.img} />
-                    </figure>
-                    <h3 className="name">{`${pet.name}, ${pet.age}yr, ${pet.sex}`}</h3>
-                    <div className="description">{pet.profile}</div>
+                  <Pet pet={pet}/>
                 </Swipeable>
               </div>
             )

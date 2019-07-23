@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import Deck from 'components/deck';
-import Saved from 'components/saved';
+import SavedList from 'components/savedList';
 import Settings from 'components/settings';
 
 import 'stylesheets/app.scss';
@@ -30,7 +30,7 @@ class App extends Component {
       <div className="app">
         <Tabs
           selectedTabClassName="selected"
-          defaultIndex={0}
+          defaultIndex={1}
         >
           <div className="panels">
             <TabPanel>
@@ -40,7 +40,9 @@ class App extends Component {
             </TabPanel>
 
             <TabPanel>
-              <Saved/>
+              { this.state.pets &&
+                <SavedList pets={(this.state.pets || [])}/>
+              }
             </TabPanel>
 
             <TabPanel>
