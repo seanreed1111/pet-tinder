@@ -3,55 +3,78 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    min-height: 490px;
 
     li {
       width: 100%;
       height: 80px;
-      display: flex;
       border: solid 1px rgba(204, 204, 204, .6);
       margin: 12px 0;
-      justify-content: space-between;
       box-shadow: inset 2px 2px 2px 0px rgba(104, 104, 104, .2);
       background: #ccc;
       cursor: pointer;
+      position: relative;
 
-      figure {
-        min-width: 60px;
-        max-width: 60px;
-        margin: 10px;
-        padding: 0;
-        overflow: hidden;
+      .x {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 16px;
+        width: 16px;
+        font-size: 16px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: solid 1px rgba(204, 204, 204, .6);
-
-        img {
-          width: 100%;
-        }
+        border: inset 1px black;
+        z-index: 20;
       }
 
-      .info {
+      .container {
+        position: relative;
+        z-index: 10;
         display: flex;
-        flex-direction: column;
-        margin: 0px 10px;
+        justify-content: space-between;
+        width: calc(100% - 16px);
 
-        h3 {
-          font-size: 18px;
-          margin-top: 10px;
-          margin-bottom: 0;
-          margin-left: 5px;
+        figure {
+          min-width: 60px;
+          max-width: 60px;
+          margin: 10px;
           padding: 0;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: solid 1px rgba(204, 204, 204, .6);
+
+          img {
+            width: 100%;
+          }
         }
 
-        .description {
-          font-size: 14px;
-          max-height: 30px;
-          overflow: hidden;
-          border: solid 1px rgba(204, 204, 204, .6);
-          padding: 5px;
+        .info {
+          display: flex;
+          flex-direction: column;
+          margin: 0px 10px;
+
+          h3 {
+            font-size: 18px;
+            margin-top: 10px;
+            margin-bottom: 0;
+            margin-left: 5px;
+            padding: 0;
+          }
+
+          .description {
+            font-size: 14px;
+            max-height: 30px;
+            overflow: hidden;
+            border: solid 1px rgba(204, 204, 204, .6);
+            padding: 5px;
+          }
         }
       }
+
     }
   }
 }
