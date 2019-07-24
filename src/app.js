@@ -7,33 +7,14 @@ import UserProfile from 'components/userProfile';
 
 import 'stylesheets/app.scss';
 
-// used to get around not requesting from same domain
-// FIXME: (allow this domain from server)
-const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
-const profileCorsUrl = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/settings.json';
-const profileUrl = corsAnywhereUrl + profileCorsUrl;
-
 const tabNames = ['search', 'saved', 'settings'];
-const defaultTab = 0;
+const defaultTab = 2;
 
 class App extends Component {
   state = {
     pets: null,
     userProfile: null,
     selectedTab: tabNames[defaultTab]
-  }
-
-  componentDidMount() {
-    this.fetchUserProfile()
-  }
-
-  fetchUserProfile() {
-    fetch(profileUrl)
-      .then( (response) => response.json() )
-      .then( (profile) => {
-        this.setState({ userProfile: profile })
-      })
-      .catch((err) => { console.log(err)})
   }
 
   selectTab(i) {
@@ -60,9 +41,7 @@ class App extends Component {
             </TabPanel>
 
             <TabPanel>
-              { this.state.userProfile &&
-                <UserProfile userProfile={this.state.userProfile}/>
-              }
+              <UserProfile userProfile={this.state.userProfile}/>
             </TabPanel>
           </div>
 

@@ -1,30 +1,48 @@
 import React, { Component } from 'react';
 import Switch from "react-switch";
 import NumericInput from 'react-numeric-input';
+import { connect } from 'react-redux';
+import { addProfile, updateAgeRange, updateType } from 'redux/actions/userProfile';
 
 import 'stylesheets/userProfile.scss';
 
-const types = ['cat', 'dog']
+const types = ['cat', 'dog'];
+
+// used to get around not requesting from same domain
+// FIXME: (allow this domain from server)
+const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
+const profileCorsUrl = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/settings.json';
+const profileUrl = corsAnywhereUrl + profileCorsUrl;
 
 class UserProfile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = props.userProfile;
+
+  componentDidMount() {
+    this.fetchUserProfile();
+  }
+
+  fetchUserProfile() {
+    // FIXME: I think this should be redux-thunk :)
+    fetch(profileUrl)
+      .then( (response) => response.json() )
+      .then( (profile) => {
+        this.props.addProfile(profile);
+      })
+      .catch((err) => { console.log(err)})
   }
 
   changeType() {
-    let type = types.filter((type) => type !== this.state.typePreference).shift()
-    this.setState({ typePreference: type })
+    let type = types.filter((type) => type !== this.props.profile.typePreference).shift();
+    this.props.updateType({ typePreference: type })
   }
 
   ageChange(minMax, value) {
-    let ageRange = this.state.ageRange
-    ageRange[minMax] = value
-    this.setState({ ageRange: ageRange })
+    let ageRange = this.props.profile.ageRange;
+    ageRange[minMax] = value;
+    this.props.updateAgeRange({ ageRange: ageRange })
   }
 
   render() {
-    const profile = this.props.userProfile;
+    const profile = this.props.profile;
 
     return (
       <div className="settings pane">
@@ -41,7 +59,7 @@ class UserProfile extends Component {
                 <Switch
                   onColor={"#739ace"}
                   onChange={this.changeType.bind(this)}
-                  checked={this.state.typePreference === 'cat'}
+                  checked={profile.typePreference === 'cat'}
                   checkedIcon={false}
                   uncheckedIcon={false}
                 />
@@ -58,7 +76,7 @@ class UserProfile extends Component {
                   min={0}
                   max={50}
                   onChange={this.ageChange.bind(this, 'min')}
-                  value={this.state.ageRange.min}
+                  value={profile.ageRange.min}
                 />
                 <NumericInput
                   className="max"
@@ -66,7 +84,7 @@ class UserProfile extends Component {
                   min={0}
                   max={50}
                   onChange={this.ageChange.bind(this, 'max')}
-                  value={this.state.ageRange.max}
+                  value={profile.ageRange.max}
                 />
               </div>
             </li>
@@ -77,4 +95,26 @@ class UserProfile extends Component {
   }
 }
 
-export default UserProfile;
+const mapStateToProps = (state) => {
+  return { profile: state.userProfile.profile };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addProfile: (profile) => {
+      dispatch(addProfile(profile))
+    },
+    updateAgeRange: (ageRange) => {
+      dispatch(updateAgeRange(ageRange))
+    },
+    updateType: (typePreference) => {
+      dispatch(updateType(typePreference))
+    }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserProfile)
+

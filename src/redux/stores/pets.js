@@ -1,4 +1,4 @@
-function petsStore(state = { pets: [] }, action) {
+function petsReducer(state = { pets: [] }, action) {
   switch(action.type) {
     case 'ADD_PETS':
       return { pets: state.pets.concat(action.pets) };
@@ -9,4 +9,4 @@ function petsStore(state = { pets: [] }, action) {
   }
 }
 
-export default petsStore;
+export default petsReducer;

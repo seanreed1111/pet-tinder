@@ -1,7 +1,8 @@
 import { combineReducers, createStore } from 'redux'
-import petsStore from './pets.js';
+import petsReducer from './pets.js';
+import userProfileReducer from './userProfile.js';
 
-const reducer = petsStore;
+const reducer = combineReducers({pets: petsReducer, userProfile: userProfileReducer});
 const store = createStore(reducer);
 
 export default store;

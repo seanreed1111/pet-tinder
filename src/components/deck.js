@@ -6,27 +6,8 @@ import Pet from 'components/pet';
 
 import "stylesheets/deck.scss";
 
-const fakeData = [
-  {
-    "id": 1001,
-    "type": "cat",
-    "name": "Patronus",
-    "img": "https://s3-us-west-2.amazonaws.com/cozi-interview-dev/patronus.jpg",
-    "sex": "M",
-    "age": 8,
-    "profile": "Lorem Ipsum"
-  },
-  {
-    "id": 1002,
-    "type": "dog",
-    "name": "Riley",
-    "img": "https://s3-us-west-2.amazonaws.com/cozi-interview-dev/riley.jpg",
-    "sex": "M",
-    "age": 5,
-    "profile": "Dalor Amet"
-  }
-]
-
+// used to get around not requesting from same domain
+// FIXME: (allow this domain from server)
 const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
 const petCorsUrl = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/pets.json';
 const petUrl = corsAnywhereUrl + petCorsUrl;
@@ -37,6 +18,7 @@ class Deck extends Component {
   }
 
   fetchPets() {
+    // FIXME: I think this should be redux-thunk :)
     fetch(petUrl)
       .then( (response) => response.json() )
       .then( (pets) => {
@@ -89,7 +71,7 @@ class Deck extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { pets: state.pets };
+  return { pets: state.pets.pets };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -107,7 +89,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Deck)
-
-// const mapDispatchToProps = { increment, decrement, reset }
-
-// export default Deck;
