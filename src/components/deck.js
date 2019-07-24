@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addPets, removeFirstPet } from 'redux/actions/pets';
+import { savePet } from 'redux/actions/savedPets';
 import Swipeable from "react-swipy";
 import Pet from 'components/pet';
 
@@ -27,7 +28,8 @@ class Deck extends Component {
       .catch((err) => { console.log(err)})
   }
 
-  remove(dir) {
+  remove(pet, dir) {
+    if(dir === 'right') this.props.savePet(pet);
     this.props.removeFirstPet();
   }
 
@@ -55,7 +57,7 @@ class Deck extends Component {
                 className="pet full"
                 key={pet.id}
               >
-                <Swipeable onSwipe={this.remove.bind(this)} >
+                <Swipeable onSwipe={this.remove.bind(this, pet)} >
                   <Pet pet={pet}/>
                 </Swipeable>
               </div>
@@ -81,6 +83,9 @@ function mapDispatchToProps(dispatch) {
     },
     removeFirstPet: () => {
       dispatch(removeFirstPet())
+    },
+    savePet: (pet) => {
+      dispatch(savePet(pet))
     }
   }
 }

@@ -8,14 +8,10 @@ import UserProfile from 'components/userProfile';
 import 'stylesheets/app.scss';
 
 const tabNames = ['search', 'saved', 'settings'];
-const defaultTab = 2;
+const defaultTab = 0;
 
 class App extends Component {
-  state = {
-    pets: null,
-    userProfile: null,
-    selectedTab: tabNames[defaultTab]
-  }
+  state = { selectedTab: tabNames[defaultTab] }
 
   selectTab(i) {
     this.setState({selectedTab: tabNames[i]})
@@ -35,13 +31,11 @@ class App extends Component {
             </TabPanel>
 
             <TabPanel>
-              { this.state.pets &&
-                <SavedList pets={(this.state.pets || [])}/>
-              }
+              <SavedList/>
             </TabPanel>
 
             <TabPanel>
-              <UserProfile userProfile={this.state.userProfile}/>
+              <UserProfile/>
             </TabPanel>
           </div>
 

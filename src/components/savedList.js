@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import Pet from 'components/pet';
-import 'stylesheets/savedList.scss'
+import { connect } from 'react-redux';
+
+import 'stylesheets/savedList.scss';
 
 class SavedList extends Component {
   constructor(props) {
     super(props);
-    let s = {
+
+    this.state = {
       modalIsOpen: false,
       modalPet: null
     };
-    this.state = {...s, ...props};
   }
 
   openModal(pet, e) {
@@ -24,7 +26,7 @@ class SavedList extends Component {
   render() {
     return (
       <div className="saved pane">
-        <Modal
+       <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal.bind(this)}
         >
@@ -34,8 +36,8 @@ class SavedList extends Component {
         </Modal>
 
         <ul className="savedList">
-          { this.state.pets &&
-            this.state.pets.map( (pet) => {
+          {
+            this.props.savedPets.map( (pet) => {
               return (
                 <li onClick={this.openModal.bind(this, pet)} key={pet.id}>
                   <Pet pet={pet}/>
@@ -49,4 +51,22 @@ class SavedList extends Component {
   }
 }
 
-export default SavedList;
+
+const mapStateToProps = (state) => {
+  console.log("savedList: ", state)
+  return { savedPets: state.savedPets.pets };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    // addProfile: (profile) => {
+    //   dispatch(addProfile(profile))
+    // }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SavedList)
+

@@ -12,8 +12,6 @@ function userProfileReducer(state = { profile: basicProfile }, action) {
     case 'UPDATE_AGE_RANGE':
       return { profile: { ...state.profile, ...action.ageRange } };
     case 'UPDATE_TYPE':
-      console.log(state);
-      console.log(action);
       return { profile: { ...state.profile, ...action.typePreference } };
     default:
       return state;
