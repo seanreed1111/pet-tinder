@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { removeFirstPet } from 'redux/actions/pets';
+import { removePet } from 'redux/actions/pets';
 import { savePet } from 'redux/actions/savedPets';
 import Swipeable from "react-swipy";
 import Pet from 'components/pet';
@@ -10,7 +10,7 @@ import "stylesheets/deck.scss";
 class Deck extends Component {
   remove(pet, dir) {
     if(dir === 'right') this.props.savePet(pet);
-    this.props.removeFirstPet();
+    this.props.removePet(pet.id);
   }
 
   render() {
@@ -53,13 +53,19 @@ class Deck extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { pets: state.pets.pets };
+  const { min, max } = state.userProfile.profile.ageRange;
+  const type = state.userProfile.profile.typePreference;
+  const pets = state.pets.pets.filter((pet) => {
+    return pet.type === type && pet.age >= min && pet.age <= max;
+  });
+
+  return { pets: pets };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    removeFirstPet: () => {
-      dispatch(removeFirstPet())
+    removePet: (petId) => {
+      dispatch(removePet(petId))
     },
     savePet: (pet) => {
       dispatch(savePet(pet))

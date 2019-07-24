@@ -3,6 +3,7 @@ export const addPets = (pets) => ({
   pets: pets
 })
 
-export const removeFirstPet = () => ({
-  type: 'REMOVE_FIRST_PET'
+export const removePet = (petId) => ({
+  type: 'REMOVE_PET',
+  id: petId
 })

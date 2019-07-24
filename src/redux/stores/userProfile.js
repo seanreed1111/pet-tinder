@@ -1,5 +1,5 @@
 const basicProfile = {
-  ageRange: {min: 0, max: 5},
+  ageRange: {min: 100, max: -1},
   id: 5000,
   profile: "lorem ipsum",
   typePreference: "dog"
