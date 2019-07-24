@@ -10,9 +10,6 @@ import 'stylesheets/app.scss';
 // used to get around not requesting from same domain
 // FIXME: (allow this domain from server)
 const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
-const petCorsUrl = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/pets.json';
-const petUrl = corsAnywhereUrl + petCorsUrl;
-
 const profileCorsUrl = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/settings.json';
 const profileUrl = corsAnywhereUrl + profileCorsUrl;
 
@@ -27,17 +24,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.fetchPets()
     this.fetchUserProfile()
-  }
-
-  fetchPets() {
-    fetch(petUrl)
-      .then( (response) => response.json() )
-      .then( (pets) => {
-        this.setState({ pets: pets })
-      })
-      .catch((err) => { console.log(err)})
   }
 
   fetchUserProfile() {
@@ -63,9 +50,7 @@ class App extends Component {
         >
           <div className="panels">
             <TabPanel>
-              { this.state.pets &&
-                <Deck pets={(this.state.pets || [])}/>
-              }
+              <Deck/>
             </TabPanel>
 
             <TabPanel>
