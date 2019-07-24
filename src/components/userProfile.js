@@ -22,6 +22,7 @@ class UserProfile extends Component {
 
   render() {
     const profile = this.props.profile;
+    console.log(profile.typePreference === 'cat')
 
     return (
       <div className="settings pane">
@@ -36,9 +37,10 @@ class UserProfile extends Component {
               <div className="right">
                 <span className="on">Cat</span>
                 <Switch
-                  onColor={"#739ace"}
+                  onColor={"#aaa"}
+                  offColor={"#739ace"}
                   onChange={this.changeType.bind(this)}
-                  checked={profile.typePreference === 'cat'}
+                  checked={profile.typePreference === 'dog'}
                   checkedIcon={false}
                   uncheckedIcon={false}
                 />
@@ -75,6 +77,7 @@ class UserProfile extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state.userProfile.profile)
   return { profile: state.userProfile.profile };
 }
 
