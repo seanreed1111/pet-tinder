@@ -2,34 +2,13 @@ import React, { Component } from 'react';
 import Switch from "react-switch";
 import NumericInput from 'react-numeric-input';
 import { connect } from 'react-redux';
-import { addProfile, updateAgeRange, updateType } from 'redux/actions/userProfile';
+import { updateAgeRange, updateType } from 'redux/actions/userProfile';
 
 import 'stylesheets/userProfile.scss';
 
 const types = ['cat', 'dog'];
 
-// used to get around not requesting from same domain
-// FIXME: (allow this domain from server)
-const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
-const profileCorsUrl = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/settings.json';
-const profileUrl = corsAnywhereUrl + profileCorsUrl;
-
 class UserProfile extends Component {
-
-  componentDidMount() {
-    this.fetchUserProfile();
-  }
-
-  fetchUserProfile() {
-    // FIXME: I think this should be redux-thunk :)
-    fetch(profileUrl)
-      .then( (response) => response.json() )
-      .then( (profile) => {
-        this.props.addProfile(profile);
-      })
-      .catch((err) => { console.log(err)})
-  }
-
   changeType() {
     let type = types.filter((type) => type !== this.props.profile.typePreference).shift();
     this.props.updateType({ typePreference: type })
@@ -101,9 +80,6 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addProfile: (profile) => {
-      dispatch(addProfile(profile))
-    },
     updateAgeRange: (ageRange) => {
       dispatch(updateAgeRange(ageRange))
     },

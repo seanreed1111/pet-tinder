@@ -1,33 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addPets, removeFirstPet } from 'redux/actions/pets';
+import { removeFirstPet } from 'redux/actions/pets';
 import { savePet } from 'redux/actions/savedPets';
 import Swipeable from "react-swipy";
 import Pet from 'components/pet';
 
 import "stylesheets/deck.scss";
 
-// used to get around not requesting from same domain
-// FIXME: (allow this domain from server)
-const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
-const petCorsUrl = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/pets.json';
-const petUrl = corsAnywhereUrl + petCorsUrl;
-
 class Deck extends Component {
-  componentDidMount() {
-    this.fetchPets()
-  }
-
-  fetchPets() {
-    // FIXME: I think this should be redux-thunk :)
-    fetch(petUrl)
-      .then( (response) => response.json() )
-      .then( (pets) => {
-        this.props.addPets(pets);
-      })
-      .catch((err) => { console.log(err)})
-  }
-
   remove(pet, dir) {
     if(dir === 'right') this.props.savePet(pet);
     this.props.removeFirstPet();
@@ -78,9 +58,6 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addPets: (pets) => {
-      dispatch(addPets(pets))
-    },
     removeFirstPet: () => {
       dispatch(removeFirstPet())
     },
