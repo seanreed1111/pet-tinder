@@ -16,7 +16,7 @@ class SavedList extends Component {
     };
   }
 
-  openModal(pet, e) {
+  openModal(pet) {
     this.setState({ modalPet: pet, modalIsOpen: true });
   }
 
@@ -25,6 +25,7 @@ class SavedList extends Component {
   }
 
   unsavePet(petId, e) {
+    e.stopPropagation();
     this.props.unsavePet(petId);
   }
 
@@ -44,19 +45,17 @@ class SavedList extends Component {
           {
             this.props.savedPets.map( (pet) => {
               return (
-                <li key={pet.id}>
+                <li
+                  onClick={this.openModal.bind(this, pet)}
+                  key={pet.id}
+                >
                   <div
                     className="x"
                     onClick={this.unsavePet.bind(this, pet.id)}
                   >
                     X
                   </div>
-                  <div
-                    className="container"
-                    onClick={this.openModal.bind(this, pet)}
-                  >
-                    <Pet pet={pet}/>
-                  </div>
+                  <Pet pet={pet}/>
                 </li>
               )
             })
