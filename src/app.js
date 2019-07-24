@@ -32,7 +32,6 @@ class App extends Component {
   }
 
   fetchPets() {
-    // FIXME: I think this should be redux-thunk :)
     fetch(petUrl)
       .then( (response) => response.json() )
       .then( (pets) => {
@@ -42,7 +41,6 @@ class App extends Component {
   }
 
   fetchUserProfile() {
-    // FIXME: I think this should be redux-thunk :)
     fetch(profileUrl)
       .then( (response) => response.json() )
       .then( (profile) => {

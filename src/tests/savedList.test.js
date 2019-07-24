@@ -1,6 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import SavedList from 'components/savedList';
+import { Provider } from 'react-redux';
+import store from 'redux/stores/store';
 
 const fakeData = [
   {
@@ -23,11 +25,15 @@ const fakeData = [
   }
 ]
 
-describe("List", () => {
+xdescribe("List", () => {
   let list, pet;
 
   beforeEach(() => {
-    list = mount(<SavedList pets={fakeData} />);
+    list = mount(
+      <Provider store={store}>
+        <SavedList pets={fakeData}/>
+      </Provider>
+    );
     pet = list.find('li').first();
     console.log(pet.text())
   })

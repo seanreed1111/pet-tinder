@@ -60,7 +60,7 @@ class SavedList extends Component {
                 )
               })
             ) : (
-              <h3 style={{'text-align': 'center'}}>Save Some Pets!</h3>
+              <h3 style={{textAlign: 'center'}}>Save Some Pets!</h3>
             )
           }
         </ul>
