@@ -2,7 +2,6 @@ import React from 'react';
 import { mount } from 'enzyme';
 import Deck from 'components/deck';
 import { Provider } from 'react-redux';
-import store from 'redux/stores/store';
 import configureStore from 'redux-mock-store';
 import { addPets, removePet } from 'redux/actions/pets';
 import { savePet } from 'redux/actions/savedPets';
