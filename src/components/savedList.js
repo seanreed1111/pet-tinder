@@ -42,23 +42,26 @@ class SavedList extends Component {
         </Modal>
 
         <ul className="savedList">
-          {
-            this.props.savedPets.map( (pet) => {
-              return (
-                <li
-                  onClick={this.openModal.bind(this, pet)}
-                  key={pet.id}
-                >
-                  <div
-                    className="x"
-                    onClick={this.unsavePet.bind(this, pet.id)}
+          { this.props.savedPets.length ? (
+              this.props.savedPets.map( (pet) => {
+                return (
+                  <li
+                    onClick={this.openModal.bind(this, pet)}
+                    key={pet.id}
                   >
-                    X
-                  </div>
-                  <Pet pet={pet}/>
-                </li>
-              )
-            })
+                    <div
+                      className="x"
+                      onClick={this.unsavePet.bind(this, pet.id)}
+                    >
+                      X
+                    </div>
+                    <Pet pet={pet}/>
+                  </li>
+                )
+              })
+            ) : (
+              <h3 style={{'text-align': 'center'}}>Save Some Pets!</h3>
+            )
           }
         </ul>
       </div>
