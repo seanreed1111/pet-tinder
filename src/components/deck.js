@@ -54,9 +54,10 @@ class Deck extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   const { min, max } = state.userProfile.profile.ageRange;
   const type = state.userProfile.profile.typePreference;
+
   const pets = state.pets.pets.filter((pet) => {
     return pet.type === type && pet.age >= min && pet.age <= max;
   });
