@@ -8,9 +8,11 @@ import Pet from 'components/pet';
 import "stylesheets/deck.scss";
 
 class Deck extends Component {
-  remove(pet, dir) {
-    if(dir === 'right') this.props.savePet(pet);
-    this.props.removePet(pet.id);
+  remove(dir, pet) {
+    const p = pet || this.props.pets[0];
+
+    if(dir === 'right') this.props.savePet(p);
+    this.props.removePet(p.id);
   }
 
   render() {
@@ -18,14 +20,14 @@ class Deck extends Component {
       <div className="deck pane">
         <button
           className="control left"
-          onClick={this.remove.bind(this, 'left')}
+          onClick={this.remove.bind(this, 'left', null)}
         >
           Reject
         </button>
 
         <button
           className="control right"
-          onClick={this.remove.bind(this, 'right')}
+          onClick={this.remove.bind(this, 'right', null)}
         >
           Accept
         </button>
