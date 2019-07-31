@@ -10,6 +10,7 @@ const types = ['cat', 'dog'];
 
 class UserProfile extends Component {
   changeType() {
+    console.log(arguments)
     let type = types.filter((type) => type !== this.props.profile.typePreference).shift();
     this.props.updateType({ typePreference: type })
   }
@@ -22,7 +23,6 @@ class UserProfile extends Component {
 
   render() {
     const profile = this.props.profile;
-    console.log(profile.typePreference === 'cat')
 
     return (
       <div className="settings pane">
@@ -43,6 +43,7 @@ class UserProfile extends Component {
                   checked={profile.typePreference === 'dog'}
                   checkedIcon={false}
                   uncheckedIcon={false}
+                  className="typeSwitch"
                 />
                 <span className="off">Dog</span>
               </div>
@@ -77,7 +78,6 @@ class UserProfile extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.userProfile.profile)
   return { profile: state.userProfile.profile };
 }
 
