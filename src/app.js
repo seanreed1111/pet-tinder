@@ -7,7 +7,7 @@ import UserProfile from 'components/userProfile';
 
 import { connect } from 'react-redux';
 import { addPets } from 'redux/actions/pets';
-import { addProfile } from 'redux/actions/userProfile';
+import { setProfile } from 'redux/actions/userProfile';
 
 import 'stylesheets/app.scss';
 
@@ -44,7 +44,7 @@ class App extends Component {
     fetch(profileUrl)
       .then( (response) => response.json() )
       .then( (profile) => {
-        this.props.addProfile(profile);
+        this.props.setProfile(profile);
       })
       .catch((err) => { console.log(err)})
   }
@@ -104,8 +104,8 @@ function mapDispatchToProps(dispatch) {
     addPets: (pets) => {
       dispatch(addPets(pets));
     },
-    addProfile: (profile) => {
-      dispatch(addProfile(profile))
+    setProfile: (profile) => {
+      dispatch(setProfile(profile))
     },
   };
 }

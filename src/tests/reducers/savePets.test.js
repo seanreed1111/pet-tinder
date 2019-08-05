@@ -1,7 +1,7 @@
 import { default as reducer } from 'redux/reducers/savedPets';
 import { savePet, unsavePet } from 'redux/actions/savedPets';
 
-describe("pets reducer", () => {
+describe("saved pets reducer", () => {
   const pet = {
     "id": 1002,
     "type": "cat",

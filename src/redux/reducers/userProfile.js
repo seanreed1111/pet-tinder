@@ -7,7 +7,7 @@ const basicProfile = {
 
 function userProfileReducer(state = { profile: basicProfile }, action) {
   switch(action.type) {
-    case 'ADD_PROFILE':
+    case 'SET_PROFILE':
       return { profile: action.profile };
     case 'UPDATE_AGE_RANGE':
       return { profile: { ...state.profile, ...action.ageRange } };
