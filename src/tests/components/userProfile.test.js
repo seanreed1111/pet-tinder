@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import UserProfile from 'components/userProfile';
 import { Provider } from 'react-redux';
-import store from './mockStore';
+import store from 'tests/mockStore';
 
 describe("UserProfile", () => {
   let profile;

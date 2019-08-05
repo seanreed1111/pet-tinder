@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import Deck, { mapStateToProps } from 'components/deck';
 import { Provider } from 'react-redux';
-import store from './mockStore';
+import store from 'tests/mockStore';
 
 describe("Deck", () => {
   let deck;
