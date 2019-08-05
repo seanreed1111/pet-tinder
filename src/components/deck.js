@@ -8,7 +8,7 @@ import Pet from 'components/pet';
 import "stylesheets/deck.scss";
 
 class Deck extends Component {
-  remove(dir, pet) {
+  remove(pet, dir) {
     const p = pet || this.props.pets[0];
 
     if(dir === 'right') this.props.savePet(p);
@@ -20,14 +20,14 @@ class Deck extends Component {
       <div className="deck pane">
         <button
           className="control left"
-          onClick={this.remove.bind(this, 'left', null)}
+          onClick={this.remove.bind(this, null, 'left')}
         >
           Reject
         </button>
 
         <button
           className="control right"
-          onClick={this.remove.bind(this, 'right', null)}
+          onClick={this.remove.bind(this, null, 'right')}
         >
           Accept
         </button>

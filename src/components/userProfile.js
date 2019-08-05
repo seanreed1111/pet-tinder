@@ -10,7 +10,6 @@ const types = ['cat', 'dog'];
 
 class UserProfile extends Component {
   changeType() {
-    console.log(arguments)
     let type = types.filter((type) => type !== this.props.profile.typePreference).shift();
     this.props.updateType({ typePreference: type })
   }
