@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from 'redux/store';
 import { fetchPets } from 'redux/actions/pets';
+import { fetchUserProfile } from 'redux/actions/userProfile';
 import App from './app';
 import * as serviceWorker from './serviceWorker';
 
 store.dispatch(fetchPets());
+store.dispatch(fetchUserProfile());
 
 ReactDOM.render(
   <Provider store={store}>

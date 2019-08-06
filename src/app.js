@@ -5,35 +5,13 @@ import Deck from 'components/deck';
 import SavedList from 'components/savedList';
 import UserProfile from 'components/userProfile';
 
-import { connect } from 'react-redux';
-import { setProfile } from 'redux/actions/userProfile';
-
 import 'stylesheets/app.scss';
 
 const tabNames = ['search', 'saved', 'settings'];
 const defaultTab = 0;
 
-// used to get around not requesting from same domain
-// FIXME: (allow this domain from server)
-const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
-const profileCorsUrl = 'https://s3-us-west-2.amazonaws.com/cozi-interview-dev/settings.json';
-const profileUrl = corsAnywhereUrl + profileCorsUrl;
-
 class App extends Component {
   state = { selectedTab: tabNames[defaultTab] }
-
-  componentDidMount() {
-    this.fetchUserProfile();
-  }
-
-  fetchUserProfile() {
-    fetch(profileUrl)
-      .then( (response) => response.json() )
-      .then( (profile) => {
-        this.props.setProfile(profile);
-      })
-      .catch((err) => { console.log(err)})
-  }
 
   selectTab(i) {
     this.setState({selectedTab: tabNames[i]})
@@ -81,19 +59,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {};
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    setProfile: (profile) => {
-      dispatch(setProfile(profile))
-    },
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App)
+export default App;
