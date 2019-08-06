@@ -16,11 +16,10 @@ export const removePet = (petId) => ({
 
 export const fetchPets = () => {
   return function (dispatch) {
-    fetch(petUrl)
+    return fetch(petUrl)
       .then( (response) => response.json() )
       .then( (pets) => {
         dispatch(addPets(pets));
       })
-      .catch((err) => { console.log(err)})
   }
 }

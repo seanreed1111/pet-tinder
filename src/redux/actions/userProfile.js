@@ -21,11 +21,10 @@ export const updateType = (typePreference) => ({
 
 export const fetchUserProfile = () => {
   return function (dispatch) {
-    fetch(profileUrl)
+    return fetch(profileUrl)
       .then( (response) => response.json() )
       .then( (profile) => {
         dispatch(setProfile(profile));
       })
-      .catch((err) => { console.log(err)})
   }
 }
