@@ -2,8 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from 'redux/store';
+import { fetchPets } from 'redux/actions/pets';
 import App from './app';
 import * as serviceWorker from './serviceWorker';
+
+store.dispatch(fetchPets());
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from 'redux'
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import petsReducer from './reducers/pets.js';
 import userProfileReducer from './reducers/userProfile.js';
 import savedPetsReducer from './reducers/savedPets.js';
@@ -9,6 +10,6 @@ const reducer = combineReducers({
   savedPets: savedPetsReducer
 });
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 export default store;
