@@ -22,7 +22,7 @@
     align-items: center;
     padding: 0;
 
-    &[data-selected="settings"] {
+    &.profile {
       position: absolute;
       bottom: 10px;
       left: 50%;
@@ -34,12 +34,15 @@
       border-right: solid 1px black;
       cursor: pointer;
       text-transform: capitalize;
+      text-decoration: black;
+      color: black;
+      user-select: none;
 
       &:last-child {
         border-right: none;
       }
 
-      &.selected {
+      &.active {
         background: rgba(100, 100, 100, .5);
       }
     }

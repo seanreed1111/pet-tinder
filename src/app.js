@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { RoutedTabs, NavTab } from "react-router-tabs";
+import classNames from "classnames";
 
 import Deck from 'components/deck';
 import SavedList from 'components/savedList';
@@ -7,53 +9,26 @@ import UserProfile from 'components/userProfile';
 
 import 'stylesheets/app.scss';
 
-const tabNames = ['search', 'saved', 'settings'];
-const defaultTab = 0;
-
 class App extends Component {
-  state = { selectedTab: tabNames[defaultTab] }
-
-  selectTab(i) {
-    this.setState({selectedTab: tabNames[i]})
-  }
-
   render() {
+    let activeTab = window.location.pathname.split('/')[1]
     return (
       <div className="app">
-        <Tabs
-          selectedTabClassName="selected"
-          onSelect={this.selectTab.bind(this)}
-          defaultIndex={defaultTab}
-        >
-          <div className="panels">
-            <TabPanel>
-              <Deck/>
-            </TabPanel>
+        <Router>
+          <Route path="/pets" component={Deck}></Route>
+          <Route path="/saved" component={SavedList}></Route>
+          <Route path="/profile" component={UserProfile}></Route>
 
-            <TabPanel>
-              <SavedList/>
-            </TabPanel>
-
-            <TabPanel>
-              <UserProfile/>
-            </TabPanel>
-          </div>
-
-          <TabList className="tabs_list" data-selected={this.state.selectedTab}>
-            {
-              tabNames.map((name, i) => {
-                return (
-                  <Tab
-                    className={['tab', name]}
-                    key={i}
-                  >
-                  {name}
-                  </Tab>
-                )
-              })
-            }
-          </TabList>
-        </Tabs>
+          <RoutedTabs
+            className={classNames(["tabs_list", activeTab])}
+            tabClassName="tab"
+            activeTabClassName="active"
+          >
+            <NavTab className="tab" to="/pets">View Pets</NavTab>
+            <NavTab className="tab" to="/saved">Saved Pets</NavTab>
+            <NavTab className="tab" to="/profile">My Profile</NavTab>
+          </RoutedTabs>
+        </Router>
       </div>
     );
   }
